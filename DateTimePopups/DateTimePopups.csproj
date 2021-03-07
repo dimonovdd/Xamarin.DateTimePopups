@@ -5,24 +5,25 @@
     <RootNamespace>Xamarin.DateTimePopups</RootNamespace>
     <PackageId>Xamarin.DateTimePopups</PackageId>
     <PackageIcon>icon.png</PackageIcon>
-    <Summary>Xamarin.DateTimePopups</Summary>
+    <Summary>Little library of popups for picking dates and times</Summary>
     <PackageTags>xamarin, ios, android, toolkit, xamarin.forms, popup, picker, date, time, dateTime</PackageTags>
     <Title>Xamarin.DateTimePopups</Title>
-    <Description>Xamarin.DateTimePopups</Description>
+    <Description>Little library of popups for picking dates and times</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>1.0.0</Version>
-    <PackageVersion>1.0.0</PackageVersion>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.1</AssemblyFileVersion>
+    <Version>1.0.0.1</Version>
+    <PackageVersion>1.0.0.1</PackageVersion>
     <Authors>dimonovdd</Authors>
     <Owners>dimonovdd</Owners>
+    <PackageProjectUrl>https://github.com/dimonovdd/Xamarin.DateTimePopups</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dimonovdd/Xamarin.DateTimePopups</RepositoryUrl>
     <PackageReleaseNotes>See: https://github.com/dimonovdd/Xamarin.DateTimePopups/releases</PackageReleaseNotes>
     <DefineConstants>$(DefineConstants);</DefineConstants>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://github.com/dimonovdd/Xamarin.DateTimePopups</PackageProjectUrl>
     <DebugType>portable</DebugType>
     <Configurations>Release;Debug</Configurations>    
     <LangVersion>8.0</LangVersion>
@@ -31,31 +32,26 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
     <DocumentationFile>bin\Release\netstandard2.0\Xamarin.DateTimePopups.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE" PackagePath="" Pack="true" />
     <None Include="..\icon.png" PackagePath="" Pack="true" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <Compile Include="**\*.shared.cs" />
     <Compile Include="**\*.shared.*.cs" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <Compile Include="**\*.netstandard.cs" />
     <Compile Include="**\*.netstandard.*.cs" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\*.android.cs" />
     <Compile Include="**\*.android.*.cs" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />    
-    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**\*.ios.cs" />
     <Compile Include="**\*.ios.*.cs" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="Xamarin.iOS.DatePickerDialog" Version="1.0.4" />
-    <Reference Include="System.Numerics" />
   </ItemGroup>
 </Project>

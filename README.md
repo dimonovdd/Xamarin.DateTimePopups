@@ -25,6 +25,9 @@ protected override void OnCreate(Bundle savedInstanceState)
     //...
 }
  ```
+
+## iOS
+No additional setup required.
  
 ## Shared
 
@@ -54,3 +57,13 @@ namespace Sample.Views
     }
 }
  ```
+
+ ## Screenshots
+
+| iOS (Date) | Android (Date) | iOS (Time) | Android (Time) |
+|:--:|:--:|:--:|:--:|
+|![iosDate](/Screenshots/iosDate.png)|![androidDate](/Screenshots/androidDate.png)|![iosTime](/Screenshots/iosTime.png)|![androidTime](/Screenshots/androidTime.png)|
+
+
+## Powered by
+- [Xamarin.iOS.DatePickerDialog](https://github.com/alexsorokoletov/Xamarin.iOS.DatePickerDialog)

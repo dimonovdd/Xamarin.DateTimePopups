@@ -8,18 +8,19 @@ namespace Xamarin.DateTimePopups
 {
     public static partial class DateTimePopups
     {
-        static Task<DateTime?> PlatformPickDateAsync(DateTime? selectedDate = null, DateTime? minDate = null, DateTime? maxDate = null)
+        static Task<DateTime?> PlatformPickDateAsync(DateTime? defaultDate = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
-            selectedDate ??= DateTime.Now;
             var activity = Platform.GetActivity();
+            defaultDate ??= DateTime.Now;
+
             var tcs = new TaskCompletionSource<DateTime?>();
 
             using var dialog = new DatePickerDialog(
                 activity,
-                (sender, e) => tcs.TrySetResult(e.Date),
-                selectedDate.Value.Year,
-                selectedDate.Value.Month - 1,
-                selectedDate.Value.Day);
+                (sender, e) => tcs.TrySetResult(e?.Date),
+                defaultDate.Value.Year,
+                defaultDate.Value.Month - 1,
+                defaultDate.Value.Day);
 
             if (minDate != null)
                 dialog.DatePicker.MinDate = minDate.Value.ToUnixTimestamp();
@@ -27,19 +28,17 @@ namespace Xamarin.DateTimePopups
             if (maxDate != null)
                 dialog.DatePicker.MaxDate = maxDate.Value.ToUnixTimestamp();
 
+            dialog.CancelEvent += (sender, e) => tcs.TrySetResult(null);
             dialog.KeyPress += DialogKeyPress;
-
-            dialog.CancelEvent +=
-                (sender, e) => tcs.TrySetResult(null);
 
             dialog.Show();
             return tcs.Task;
         }
 
-        static Task<TimeSpan?> PlatformPickTimeAsync(TimeSpan? selectedTime = null)
+        static Task<TimeSpan?> PlatformPickTimeAsync(TimeSpan? defaultTime = null)
         {
-            selectedTime ??= DateTime.Now.TimeOfDay;
             var activity = Platform.GetActivity();
+            defaultTime ??= DateTime.Now.TimeOfDay;
 
             var tcs = new TaskCompletionSource<TimeSpan?>();
 
@@ -49,29 +48,25 @@ namespace Xamarin.DateTimePopups
                      e != null
                      ? new TimeSpan(e.HourOfDay, e.Minute, 0)
                      : (TimeSpan?)null),
-                 selectedTime.Value.Hours,
-                 selectedTime.Value.Minutes,
+                 defaultTime.Value.Hours,
+                 defaultTime.Value.Minutes,
                  DateFormat.Is24HourFormat(activity));
 
+            dialog.CancelEvent += (sender, e) => tcs.TrySetResult(null);
             dialog.KeyPress += DialogKeyPress;
-
-            dialog.CancelEvent +=
-                (sender, e) => tcs.TrySetResult(null);
 
             dialog.Show();
             return tcs.Task;
         }
 
-        private static void DialogKeyPress(object sender, global::Android.Content.DialogKeyEventArgs e)
+        static void DialogKeyPress(object sender, global::Android.Content.DialogKeyEventArgs e)
         {
             if (e.KeyCode == Keycode.Back && sender is Dialog dialog)
                 dialog?.Cancel();
         }
 
         static readonly DateTime jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        public static long ToUnixTimestamp(this DateTime dateTime)
-            => (long)(dateTime.ToUniversalTime() - jan1st1970).TotalMilliseconds;
-
-        
+        static long ToUnixTimestamp(this DateTime dateTime)
+            => (long)(dateTime.ToUniversalTime() - jan1st1970).TotalMilliseconds;  
     }
 }

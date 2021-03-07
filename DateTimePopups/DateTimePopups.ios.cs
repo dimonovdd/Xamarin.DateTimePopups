@@ -7,15 +7,15 @@ namespace Xamarin.DateTimePopups
 {
     public static partial class DateTimePopups
     {
-        static Task<DateTime?> PlatformPickDateAsync(DateTime? selectedDate = null, DateTime? minDate = null, DateTime? maxDate = null)
-        {
-            return ShowPicker(false, selectedDate, minDate, maxDate);
-        }
+        static Task<DateTime?> PlatformPickDateAsync(DateTime? defaultDate = null, DateTime? minDate = null, DateTime? maxDate = null)
+            => ShowPicker(false, defaultDate, minDate, maxDate);
 
-        static async Task<TimeSpan?> PlatformPickTimeAsync(TimeSpan? selectedTime = null)
+        static async Task<TimeSpan?> PlatformPickTimeAsync(TimeSpan? defaultTime = null)
         {
-            var dateTime = await ShowPicker(true, selectedTime != null ? DateTime.Now.Date + selectedTime : null);
-            return dateTime.Value.TimeOfDay;
+            var dateTime = await ShowPicker(true, defaultTime != null ? DateTime.Now.Date + defaultTime : null);
+            return dateTime != null
+                ? new TimeSpan(dateTime.Value.TimeOfDay.Hours, dateTime.Value.TimeOfDay.Minutes, 0)
+                : (TimeSpan?)null;
         }
 
         static Task<DateTime?> ShowPicker(bool isTime, DateTime? selectedDate = null, DateTime? minDate = null, DateTime? maxDate = null)
@@ -36,6 +36,5 @@ namespace Xamarin.DateTimePopups
 
             return tcs.Task;
         }
-
     }
 }
