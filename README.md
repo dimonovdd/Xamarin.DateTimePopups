@@ -15,7 +15,7 @@
 This library can be used in Xamarin.iOS, Xamarin.Android or Xamarin.Forms projects
 
 ## Android
-In the Android project's MainLauncher or any Activity that is launched, Xamarin.Essentials must be initialized in the OnCreate method:
+In the Android project's MainLauncher or any Activity that is launched, this library must be initialized in the OnCreate method:
 ```csharp
 protected override void OnCreate(Bundle savedInstanceState)
 {
