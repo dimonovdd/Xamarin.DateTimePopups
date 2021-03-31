@@ -26,8 +26,19 @@ protected override void OnCreate(Bundle savedInstanceState)
 }
  ```
 
-## iOS
-No additional setup required.
+## iOS (Optional)
+You can set the function to get the current `UIView`
+
+```csharp
+public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+{
+    Xamarin.DateTimePopups.Platform.Init(()=> Xamarin.Essentials.Platform.GetCurrentUIViewController()?.View);
+    global::Xamarin.Forms.Forms.Init();
+    LoadApplication(new App());
+
+    return base.FinishedLaunching(app, options);
+}
+ ```
  
 ## Shared
 

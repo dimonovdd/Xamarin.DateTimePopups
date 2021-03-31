@@ -22,17 +22,16 @@ namespace Xamarin.DateTimePopups
         {
             var tcs = new TaskCompletionSource<DateTime?>();
 
-            var dialog = new DatePickerDialog();
+            var dialog = new DatePickerDialog(useLocalizedButtons: true);
             dialog.Show(
                 null,
-                "Done",
-                "Cancel",
                 isTime ? UIDatePickerMode.Time : UIDatePickerMode.Date,
                 (date) => tcs.TrySetResult(date),
                 selectedDate ?? DateTime.Now,
                 maxDate,
                 minDate,
-                () => tcs.TrySetResult(null));        
+                () => tcs.TrySetResult(null),
+                Platform.getCurrentViewFunc);       
 
             return tcs.Task;
         }

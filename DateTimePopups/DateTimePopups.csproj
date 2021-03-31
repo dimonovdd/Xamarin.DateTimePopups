@@ -52,6 +52,6 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**\*.ios.cs" />
     <Compile Include="**\*.ios.*.cs" />
-    <PackageReference Include="Xamarin.iOS.DatePickerDialog" Version="1.0.4" />
+    <PackageReference Include="Xamarin.iOS.DatePickerDialog" Version="1.0.6" />
   </ItemGroup>
 </Project>

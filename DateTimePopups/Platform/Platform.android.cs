@@ -5,7 +5,7 @@ using Android.OS;
 namespace Xamarin.DateTimePopups
 {
     /// <summary>Platform specific helpers.</summary>
-    public static class Platform
+    public static partial class Platform
     {
         internal static Activity currentActivity;
         internal static Bundle currentBundle;
