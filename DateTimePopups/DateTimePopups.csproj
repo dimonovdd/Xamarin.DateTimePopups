@@ -10,10 +10,10 @@
     <Title>Xamarin.DateTimePopups</Title>
     <Description>Little library of popups for picking dates and times</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.2</AssemblyFileVersion>
-    <Version>1.0.0.2</Version>
-    <PackageVersion>1.0.0.2</PackageVersion>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.3</AssemblyFileVersion>
+    <Version>1.0.0.3</Version>
+    <PackageVersion>1.0.0.3</PackageVersion>
     <Authors>dimonovdd</Authors>
     <Owners>dimonovdd</Owners>
     <PackageProjectUrl>https://github.com/dimonovdd/Xamarin.DateTimePopups</PackageProjectUrl>
